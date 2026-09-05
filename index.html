@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Tarjeta de Presentación</title>
+    <style>
+      /* ---------- RESET Y ESTILOS GLOBALES ---------- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Segoe UI",
+          Roboto,
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background-color: #006633; /* Fondo principal: verde institucional */
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      /* ---------- TARJETA PRINCIPAL ---------- */
+      .card {
+        max-width: 550px;
+        width: 100%;
+        background-color: #ffffff; /* Fondo secundario: blanco */
+        border-radius: 28px;
+        padding: 2.5rem 2rem 2.2rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        border: 2px solid #ffd700; /* Borde dorado */
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.3s ease;
+        text-align: center;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 28px 50px rgba(0, 0, 0, 0.45);
+      }
+
+      /* ---------- ENCABEZADO: FOTO Y NOMBRE ---------- */
+      .avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #ffd700; /* Borde dorado */
+        background-color: #e9ecef;
+        display: block;
+        margin: 0 auto 1.2rem auto;
+        box-shadow: 0 8px 18px rgba(0, 102, 51, 0.25);
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #000000; /* Texto negro */
+        letter-spacing: -0.5px;
+        margin-bottom: 0.25rem;
+      }
+
+      .carrera {
+        display: inline-block;
+        background-color: #006633; /* Verde institucional */
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.4rem 1.4rem;
+        border-radius: 50px;
+        letter-spacing: 0.3px;
+        margin-bottom: 1.5rem;
+        border: 1.5px solid #ffd700; /* Detalle dorado */
+      }
+
+      /* ---------- PÁRRAFO DE ROL ---------- */
+      .rol {
+        background-color: #f8f9fa;
+        padding: 1.2rem 1.5rem;
+        border-radius: 18px;
+        border-left: 6px solid #ffd700; /* Acento dorado */
+        margin-bottom: 1.8rem;
+        text-align: left;
+        color: #000000;
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+
+      .rol strong {
+        color: #006633; /* Verde institucional para destacar */
+        font-weight: 700;
+      }
+
+      /* ---------- ENLACES (REDES) ---------- */
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem 1.2rem;
+        margin-top: 0.5rem;
+      }
+
+      .links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: #00a86b; /* Resaltado verde claro */
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 0.6rem 1.4rem;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+        border: 1.5px solid transparent;
+        box-shadow: 0 4px 8px rgba(0, 168, 107, 0.25);
+      }
+
+      .links a:hover {
+        background-color: #008f5a; /* Oscurecer ligeramente el verde claro */
+        transform: scale(1.03);
+        box-shadow: 0 6px 14px rgba(0, 168, 107, 0.4);
+        border-color: #ffd700; /* Borde dorado al pasar el ratón */
+      }
+
+      /* Iconos simples (sin Font Awesome, usando caracteres Unicode) */
+      .links a::before {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+      .link-github::before {
+        content: "🐙 ";
+      }
+      .link-linkedin::before {
+        content: "🔗 ";
+      }
+      .link-email::before {
+        content: "✉️ ";
+      }
+
+      /* ---------- PIE DE TARJETA (opcional) ---------- */
+      .footer-card {
+        margin-top: 1.8rem;
+        font-size: 0.75rem;
+        color: #6c757d;
+        border-top: 1.5px dashed #ffd700;
+        padding-top: 1.2rem;
+        letter-spacing: 0.3px;
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 480px) {
+        .card {
+          padding: 1.8rem 1.2rem;
+        }
+        .avatar {
+          width: 110px;
+          height: 110px;
+        }
+        h1 {
+          font-size: 1.6rem;
+        }
+        .links a {
+          font-size: 0.85rem;
+          padding: 0.5rem 1rem;
+        }
+        .rol {
+          font-size: 0.9rem;
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <!-- FOTO (avatar) -->
+      <img
+        class="avatar"
+        src="img/Foto_terno.jpeg"
+        alt="Foto de perfil"
+        title="Mi foto"
+      />
+
+      <!-- NOMBRE Y CARRERA -->
+      <h1>Andrés Anthony Valencia Bernaola</h1>
+      <span class="carrera">🚀 Ingeniería de Sistemas - UNCP</span>
+
+      <!-- PÁRRAFO SOBRE EL ROL -->
+      <div class="rol">
+        <strong>🎯 Rol preferido: Fullstack</strong> — Me apasiona poder abarcar
+        tanto el <strong>Frontend</strong> como el <strong>Backend</strong>.
+        Disfruto construyendo soluciones completas desde cero y ver cómo cada
+        pieza encaja para ofrecer una experiencia de usuario fluida y robusta.
+        Ademas de que siempre me gusta aprender un poco sobre cualquier tema.
+      </div>
+
+      <!-- ENLACES A REDES Y CORREO -->
+      <div class="links">
+        <a
+          href="https://github.com/Anthony-Valencia"
+          target="_blank"
+          class="link-github"
+          >GitHub</a
+        >
+        <a
+          href="https://www.linkedin.com/in/andrés-anthony-valencia-bernaola-491298434/"
+          target="_blank"
+          class="link-linkedin"
+          >LinkedIn</a
+        >
+        <a href="mailto:andres.valencia.bernaola@gmail.com" class="link-email"
+          >Correo</a
+        >
+      </div>
+
+      <!-- PIE (opcional) -->
+      <div class="footer-card">
+        🌟 “Construyendo el futuro, una línea de código a la vez”
+      </div>
+    </div>
+  </body>
+</html>
