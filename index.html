@@ -3,9 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Tarjeta de Presentación</title>
+    <title>Andrés Anthony · Perfil</title>
+    <!-- Font Awesome (iconos) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style>
-      /* ---------- RESET Y ESTILOS GLOBALES ---------- */
+      /* ---------- VARIABLES (Temas claro/oscuro) ---------- */
+      :root {
+        --bg-body: #006633;
+        --card-bg: #ffffff;
+        --card-border: #ffd700;
+        --text-primary: #000000;
+        --text-secondary: #1e2a3a;
+        --accent-green: #006633;
+        --accent-light: #00a86b;
+        --accent-gold: #ffd700;
+        --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        --shadow-hover: 0 28px 50px rgba(0, 0, 0, 0.45);
+        --rol-bg: #f8f9fa;
+        --footer-color: #6c757d;
+        --tag-bg: #e9ecef;
+        --tag-color: #1e2a3a;
+        --progress-bg: #e9ecef;
+        --progress-fill: #006633;
+        --border-light: #e0e0e0;
+        --transition: 0.3s ease;
+      }
+
+      [data-theme="dark"] {
+        --bg-body: #0f1a1a;
+        --card-bg: #1e2a2a;
+        --card-border: #ffd700;
+        --text-primary: #f0f4f8;
+        --text-secondary: #d0dce8;
+        --accent-green: #2e8b57;
+        --accent-light: #3cb371;
+        --shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        --shadow-hover: 0 28px 50px rgba(0, 0, 0, 0.85);
+        --rol-bg: #2a3a3a;
+        --footer-color: #a0b0b0;
+        --tag-bg: #2a3a3a;
+        --tag-color: #d0dce8;
+        --progress-bg: #3a4a4a;
+        --progress-fill: #3cb371;
+        --border-light: #3a4a4a;
+      }
+
+      /* ---------- RESET Y GLOBALES ---------- */
       * {
         margin: 0;
         padding: 0;
@@ -13,221 +59,656 @@
       }
 
       body {
-        font-family:
-          "Segoe UI",
-          Roboto,
-          system-ui,
-          -apple-system,
-          sans-serif;
-        background-color: #006633; /* Fondo principal: verde institucional */
+        font-family: "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+        background-color: var(--bg-body);
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        padding: 30px 20px;
+        transition: background-color var(--transition);
       }
 
       /* ---------- TARJETA PRINCIPAL ---------- */
       .card {
-        max-width: 550px;
+        max-width: 780px;
         width: 100%;
-        background-color: #ffffff; /* Fondo secundario: blanco */
-        border-radius: 28px;
-        padding: 2.5rem 2rem 2.2rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-        border: 2px solid #ffd700; /* Borde dorado */
-        transition:
-          transform 0.25s ease,
-          box-shadow 0.3s ease;
-        text-align: center;
+        background-color: var(--card-bg);
+        border-radius: 32px;
+        padding: 2.8rem 2.5rem 2.5rem;
+        box-shadow: var(--shadow);
+        border: 2px solid var(--card-border);
+        transition: transform 0.25s ease, box-shadow 0.3s ease,
+          background-color var(--transition), border-color var(--transition);
+        position: relative;
+        overflow: hidden;
       }
 
       .card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 28px 50px rgba(0, 0, 0, 0.45);
+        box-shadow: var(--shadow-hover);
       }
 
-      /* ---------- ENCABEZADO: FOTO Y NOMBRE ---------- */
+      /* ---------- BOTÓN TEMA ---------- */
+      .theme-toggle {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        background: var(--accent-light);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: background 0.2s, transform 0.15s;
+        border: 1.5px solid var(--card-border);
+        z-index: 10;
+      }
+      .theme-toggle:hover {
+        background: var(--accent-green);
+        transform: scale(1.03);
+      }
+      .theme-toggle i {
+        font-size: 1rem;
+      }
+
+      /* ---------- ENCABEZADO: FOTO + NOMBRE ---------- */
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.8rem;
+      }
+
       .avatar {
-        width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 150px;
         border-radius: 50%;
         object-fit: cover;
-        border: 5px solid #ffd700; /* Borde dorado */
+        border: 5px solid var(--card-border);
         background-color: #e9ecef;
-        display: block;
-        margin: 0 auto 1.2rem auto;
         box-shadow: 0 8px 18px rgba(0, 102, 51, 0.25);
+        transition: border-color var(--transition);
+        margin-bottom: 1rem;
       }
 
       h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         font-weight: 700;
-        color: #000000; /* Texto negro */
+        color: var(--text-primary);
         letter-spacing: -0.5px;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.1rem;
+        transition: color var(--transition);
+      }
+
+      .subtitle {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem 1.2rem;
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.8rem;
+        transition: color var(--transition);
+      }
+
+      .subtitle span {
+        background: var(--tag-bg);
+        padding: 0.2rem 1rem;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: var(--tag-color);
+        transition: background var(--transition), color var(--transition);
       }
 
       .carrera {
         display: inline-block;
-        background-color: #006633; /* Verde institucional */
+        background-color: var(--accent-green);
         color: #ffffff;
         font-size: 1rem;
         font-weight: 600;
-        padding: 0.4rem 1.4rem;
+        padding: 0.4rem 1.8rem;
         border-radius: 50px;
         letter-spacing: 0.3px;
-        margin-bottom: 1.5rem;
-        border: 1.5px solid #ffd700; /* Detalle dorado */
+        border: 1.5px solid var(--card-border);
+        transition: background var(--transition), border-color var(--transition);
       }
 
-      /* ---------- PÁRRAFO DE ROL ---------- */
+      /* ---------- NAVEGACIÓN POR PESTAÑAS ---------- */
+      .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 0.3rem;
+        margin: 1.8rem 0 1.5rem;
+        flex-wrap: wrap;
+        border-bottom: 2px solid var(--border-light);
+        padding-bottom: 0.5rem;
+        transition: border-color var(--transition);
+      }
+
+      .tab-btn {
+        background: transparent;
+        border: none;
+        padding: 0.6rem 1.8rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        cursor: pointer;
+        border-radius: 50px;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        position: relative;
+      }
+
+      .tab-btn:hover {
+        background: var(--tag-bg);
+        color: var(--text-primary);
+      }
+
+      .tab-btn.active {
+        background: var(--accent-light);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 168, 107, 0.3);
+      }
+
+      .tab-btn i {
+        margin-right: 0.4rem;
+      }
+
+      /* ---------- CONTENIDO DE PESTAÑAS ---------- */
+      .tab-content {
+        display: none;
+        animation: fadeUp 0.4s ease forwards;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeUp {
+        0% {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ---------- SECCIÓN "SOBRE MÍ" ---------- */
       .rol {
-        background-color: #f8f9fa;
-        padding: 1.2rem 1.5rem;
-        border-radius: 18px;
-        border-left: 6px solid #ffd700; /* Acento dorado */
+        background-color: var(--rol-bg);
+        padding: 1.5rem 2rem;
+        border-radius: 20px;
+        border-left: 6px solid var(--card-border);
         margin-bottom: 1.8rem;
-        text-align: left;
-        color: #000000;
-        font-size: 0.98rem;
-        line-height: 1.6;
+        color: var(--text-primary);
+        font-size: 1rem;
+        line-height: 1.7;
+        transition: background var(--transition), color var(--transition),
+          border-color var(--transition);
       }
 
       .rol strong {
-        color: #006633; /* Verde institucional para destacar */
+        color: var(--accent-green);
         font-weight: 700;
       }
 
-      /* ---------- ENLACES (REDES) ---------- */
-      .links {
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 2rem;
+        margin-top: 1.2rem;
+      }
+
+      .info-item {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.8rem 1.2rem;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        transition: color var(--transition);
+      }
+
+      .info-item i {
+        color: var(--accent-green);
+        width: 1.4rem;
+        font-size: 1.2rem;
+        transition: color var(--transition);
+      }
+
+      /* ---------- SECCIÓN HABILIDADES ---------- */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem 2rem;
         margin-top: 0.5rem;
       }
 
-      .links a {
+      .skill {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .skill-label {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 500;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+        transition: color var(--transition);
+      }
+
+      .skill-bar {
+        width: 100%;
+        height: 8px;
+        background: var(--progress-bg);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: background var(--transition);
+      }
+
+      .skill-fill {
+        height: 100%;
+        border-radius: 10px;
+        background: var(--progress-fill);
+        width: 0%;
+        transition: width 1s ease;
+      }
+
+      /* ---------- SECCIÓN CONTACTO ---------- */
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: var(--rol-bg);
+        padding: 0.8rem 1.5rem;
+        border-radius: 60px;
+        transition: background var(--transition), transform 0.15s;
+        border: 1px solid transparent;
+      }
+
+      .contact-item:hover {
+        background: var(--tag-bg);
+        border-color: var(--accent-gold);
+        transform: scale(1.01);
+      }
+
+      .contact-item i {
+        font-size: 1.4rem;
+        color: var(--accent-green);
+        width: 2rem;
+        text-align: center;
+        transition: color var(--transition);
+      }
+
+      .contact-item a,
+      .contact-item span {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color var(--transition);
+      }
+
+      .contact-item a:hover {
+        color: var(--accent-light);
+      }
+
+      /* ---------- ENLACES RÁPIDOS (redes) ---------- */
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.8rem;
+        flex-wrap: wrap;
+      }
+
+      .social-links a {
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        background-color: #00a86b; /* Resaltado verde claro */
-        color: #ffffff;
+        gap: 0.5rem;
+        background: var(--accent-light);
+        color: #fff;
         font-weight: 600;
         text-decoration: none;
-        padding: 0.6rem 1.4rem;
+        padding: 0.6rem 1.6rem;
         border-radius: 50px;
         font-size: 0.95rem;
-        transition:
-          background 0.2s,
-          transform 0.15s,
-          box-shadow 0.2s;
+        transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
         border: 1.5px solid transparent;
         box-shadow: 0 4px 8px rgba(0, 168, 107, 0.25);
       }
 
-      .links a:hover {
-        background-color: #008f5a; /* Oscurecer ligeramente el verde claro */
+      .social-links a:hover {
+        background: var(--accent-green);
         transform: scale(1.03);
         box-shadow: 0 6px 14px rgba(0, 168, 107, 0.4);
-        border-color: #ffd700; /* Borde dorado al pasar el ratón */
+        border-color: var(--card-border);
       }
 
-      /* Iconos simples (sin Font Awesome, usando caracteres Unicode) */
-      .links a::before {
-        font-size: 1.2rem;
-        line-height: 1;
-      }
-      .link-github::before {
-        content: "🐙 ";
-      }
-      .link-linkedin::before {
-        content: "🔗 ";
-      }
-      .link-email::before {
-        content: "✉️ ";
+      .social-links a i {
+        font-size: 1.1rem;
       }
 
-      /* ---------- PIE DE TARJETA (opcional) ---------- */
+      /* ---------- PIE DE TARJETA ---------- */
       .footer-card {
-        margin-top: 1.8rem;
-        font-size: 0.75rem;
-        color: #6c757d;
-        border-top: 1.5px dashed #ffd700;
+        margin-top: 2.2rem;
+        font-size: 0.8rem;
+        color: var(--footer-color);
+        border-top: 1.5px dashed var(--card-border);
         padding-top: 1.2rem;
         letter-spacing: 0.3px;
+        text-align: center;
+        transition: color var(--transition), border-color var(--transition);
       }
 
       /* ---------- RESPONSIVE ---------- */
-      @media (max-width: 480px) {
+      @media (max-width: 700px) {
         .card {
-          padding: 1.8rem 1.2rem;
+          padding: 2rem 1.2rem;
         }
         .avatar {
-          width: 110px;
-          height: 110px;
+          width: 120px;
+          height: 120px;
         }
         h1 {
-          font-size: 1.6rem;
+          font-size: 1.8rem;
         }
-        .links a {
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+        .tabs {
+          gap: 0.2rem;
+        }
+        .tab-btn {
+          padding: 0.4rem 1rem;
           font-size: 0.85rem;
-          padding: 0.5rem 1rem;
+        }
+        .theme-toggle {
+          top: 12px;
+          right: 16px;
+          padding: 0.3rem 0.8rem;
+          font-size: 0.8rem;
+        }
+        .contact-item {
+          padding: 0.6rem 1rem;
+          border-radius: 30px;
+        }
+        .social-links a {
+          padding: 0.4rem 1.2rem;
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card {
+          padding: 1.5rem 0.8rem;
+        }
+        .avatar {
+          width: 100px;
+          height: 100px;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        .subtitle span {
+          font-size: 0.75rem;
+          padding: 0.1rem 0.8rem;
         }
         .rol {
           font-size: 0.9rem;
           padding: 1rem;
         }
+        .tab-btn {
+          font-size: 0.75rem;
+          padding: 0.3rem 0.8rem;
+        }
+        .info-item {
+          font-size: 0.85rem;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="card">
-      <!-- FOTO (avatar) -->
-      <img
-        class="avatar"
-        src="img/Foto_terno.jpeg"
-        alt="Foto de perfil"
-        title="Mi foto"
-      />
+    <div class="card" id="card">
+      <!-- Botón de cambio de tema -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+        <i class="fas fa-moon"></i> <span id="themeLabel">Oscuro</span>
+      </button>
 
-      <!-- NOMBRE Y CARRERA -->
-      <h1>Andrés Anthony Valencia Bernaola</h1>
-      <span class="carrera">Ingeniería de Sistemas - UNCP</span>
-
-      <!-- PÁRRAFO SOBRE EL ROL -->
-      <div class="rol">
-        <strong>🎯 Rol preferido: Fullstack</strong> — Me apasiona poder abarcar
-        tanto el <strong>Frontend</strong> como el <strong>Backend</strong>.
-        Disfruto construyendo soluciones completas desde cero y ver cómo cada
-        pieza encaja para ofrecer una experiencia de usuario fluida y robusta.
-        Ademas de que siempre me gusta aprender un poco sobre cualquier tema.
+      <!-- Encabezado -->
+      <div class="header">
+        <img
+          class="avatar"
+          src="img/Foto_terno.jpeg"
+          alt="Foto de perfil de Andrés Anthony"
+          title="Andrés Anthony Valencia Bernaola"
+        />
+        <h1>Andrés Anthony Valencia Bernaola</h1>
+        <div class="subtitle">
+          <span><i class="fas fa-map-pin"></i> Huancayo, Perú</span>
+          <span><i class="fas fa-code"></i> Fullstack Developer</span>
+          <span><i class="fas fa-graduation-cap"></i> UNCP</span>
+        </div>
+        <span class="carrera">Ingeniería de Sistemas</span>
       </div>
 
-      <!-- ENLACES A REDES Y CORREO -->
-      <div class="links">
-        <a
-          href="https://github.com/Anthony-Valencia"
-          target="_blank"
-          class="link-github"
-          >GitHub</a
-        >
-        <a
-          href="https://www.linkedin.com/in/andrés-anthony-valencia-bernaola-491298434/"
-          target="_blank"
-          class="link-linkedin"
-          >LinkedIn</a
-        >
-        <a href="mailto:andres.valencia.bernaola@gmail.com" class="link-email"
-          >Correo</a
-        >
+      <!-- Pestañas (ahora sin Proyectos) -->
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="about" role="tab">
+          <i class="fas fa-user"></i> Sobre mí
+        </button>
+        <button class="tab-btn" data-tab="skills" role="tab">
+          <i class="fas fa-cogs"></i> Habilidades
+        </button>
+        <button class="tab-btn" data-tab="contact" role="tab">
+          <i class="fas fa-envelope"></i> Contacto
+        </button>
       </div>
 
-      <!-- PIE (opcional) -->
+      <!-- Contenido: Sobre mí -->
+      <div class="tab-content active" id="about" role="tabpanel">
+        <div class="rol">
+          <strong>🎯 Rol preferido: Fullstack</strong> — Me apasiona poder abarcar
+          tanto el <strong>Frontend</strong> como el <strong>Backend</strong>.
+          Disfruto construyendo soluciones completas desde cero y ver cómo cada
+          pieza encaja para ofrecer una experiencia de usuario fluida y robusta.
+          Además, siempre me gusta aprender un poco sobre cualquier tema.
+        </div>
+        <div class="info-grid">
+          <div class="info-item"><i class="fas fa-calendar-alt"></i> Edad: 21 años</div>
+          <div class="info-item"><i class="fas fa-map-marker-alt"></i> Huancayo, Perú</div>
+          <div class="info-item"><i class="fas fa-university"></i> UNCP - 9no ciclo</div>
+          <div class="info-item"><i class="fas fa-language"></i> Español (nativo), Inglés (intermedio)</div>
+          <div class="info-item"><i class="fas fa-heart"></i> Música, videojuegos, deportes</div>
+          <div class="info-item"><i class="fas fa-rocket"></i> Siempre en busca de nuevos retos</div>
+        </div>
+      </div>
+
+      <!-- Contenido: Habilidades -->
+      <div class="tab-content" id="skills" role="tabpanel">
+        <div class="skills-grid">
+          <div class="skill">
+            <div class="skill-label"><span>HTML / CSS</span> <span>90%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%;"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>JavaScript (ES6+)</span> <span>85%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:85%;"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>React / Vue</span> <span>70%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:70%;"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Node.js / Express</span> <span>75%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:75%;"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Python / Flask</span> <span>65%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:65%;"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>SQL / MongoDB</span> <span>70%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:70%;"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Git / GitHub</span> <span>80%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill-label"><span>Docker / AWS (básico)</span> <span>50%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:50%;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenido: Contacto -->
+      <div class="tab-content" id="contact" role="tabpanel">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:andres.valencia.bernaola@gmail.com">andres.valencia.bernaola@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>+51 987 654 321</span>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/Anthony-Valencia" target="_blank">github.com/Anthony-Valencia</a>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/andrés-anthony-valencia-bernaola-491298434/" target="_blank">LinkedIn</a>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-twitter"></i>
+            <a href="#" target="_blank">@anthony_dev</a>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/Anthony-Valencia" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://www.linkedin.com/in/andrés-anthony-valencia-bernaola-491298434/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="mailto:andres.valencia.bernaola@gmail.com"><i class="fas fa-envelope"></i> Correo</a>
+        </div>
+      </div>
+
+      <!-- Pie -->
       <div class="footer-card">
-        🌟 “Construyendo el futuro, una línea de código a la vez”
+        🌟 “Construyendo el futuro, una línea de código a la vez” · 2026
       </div>
     </div>
+
+    <script>
+      (function() {
+        // ---------- TEMA (claro/oscuro) ----------
+        const themeToggle = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        const icon = themeToggle.querySelector('i');
+        let currentTheme = localStorage.getItem('theme') || 'light';
+
+        function setTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          if (theme === 'dark') {
+            icon.className = 'fas fa-sun';
+            themeLabel.textContent = 'Claro';
+          } else {
+            icon.className = 'fas fa-moon';
+            themeLabel.textContent = 'Oscuro';
+          }
+          currentTheme = theme;
+        }
+
+        setTheme(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+          const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+          setTheme(newTheme);
+        });
+
+        // ---------- PESTAÑAS (ahora solo 3) ----------
+        const tabs = document.querySelectorAll('.tab-btn');
+        const contents = {
+          about: document.getElementById('about'),
+          skills: document.getElementById('skills'),
+          contact: document.getElementById('contact'),
+        };
+
+        function activateTab(tabId) {
+          tabs.forEach(btn => btn.classList.remove('active'));
+          Object.values(contents).forEach(c => c.classList.remove('active'));
+
+          const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+          if (activeBtn) activeBtn.classList.add('active');
+          if (contents[tabId]) contents[tabId].classList.add('active');
+        }
+
+        tabs.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+            if (tabId) activateTab(tabId);
+          });
+        });
+
+        // ---------- ANIMACIÓN DE BARRAS DE HABILIDADES ----------
+        const skillsSection = document.getElementById('skills');
+        const fills = skillsSection.querySelectorAll('.skill-fill');
+
+        function animateBars() {
+          fills.forEach(fill => {
+            const width = fill.style.width;
+            if (width) {
+              fill.style.transition = 'none';
+              fill.style.width = '0%';
+              void fill.offsetHeight;
+              fill.style.transition = 'width 1s ease';
+              fill.style.width = width;
+            }
+          });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateBars();
+            }
+          });
+        }, { threshold: 0.3 });
+
+        observer.observe(skillsSection);
+
+        if (skillsSection.getBoundingClientRect().top < window.innerHeight) {
+          animateBars();
+        }
+
+        const skillsTabBtn = document.querySelector('.tab-btn[data-tab="skills"]');
+        if (skillsTabBtn) {
+          skillsTabBtn.addEventListener('click', () => {
+            setTimeout(animateBars, 200);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
